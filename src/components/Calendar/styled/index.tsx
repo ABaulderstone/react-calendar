@@ -1,4 +1,4 @@
-import tw, { styled } from 'twin.macro';
+import tw from 'twin.macro';
 import Table from '../../Table';
 
 export const Container = tw.div`container mx-auto px-4 flex flex-col gap-4`;
