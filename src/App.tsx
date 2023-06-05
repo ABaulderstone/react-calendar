@@ -4,14 +4,20 @@ import Months from '../types/months.d';
 import { getMonth } from './utils/date/current-month';
 
 function App() {
-  const currentDay = new Date();
-  const currentMonth = getMonth(currentDay);
-  const [selectedMonth, setSelectedMonth] = useState<Months>(currentMonth);
+  const currentDate = new Date();
+  const [selectedMonth, setSelectedMonth] = useState<Months>(Months.BLANK);
+  const [selectedMonthNumber, setSelectedMonthNumber] = useState<number>(
+    currentDate.getMonth()
+  );
+  const [selectedYear, setSelectedYear] = useState<number>(
+    currentDate.getFullYear()
+  );
 
   useEffect(() => {
-    console.log(currentMonth);
-    console.log(currentDay);
-  }, [selectedMonth]);
+    const month = getMonth(selectedMonthNumber);
+    setSelectedMonth(month);
+  }, [selectedMonthNumber]);
+
   const days = [
     [1, 2, 3, 4, 5, 6, 7],
     [8, 9, 10, 11, 12, 13, 14],
@@ -21,7 +27,7 @@ function App() {
   ];
   return (
     <>
-      <Calendar days={days} month={selectedMonth} />
+      <Calendar days={days} month={selectedMonth} year={selectedYear} />
     </>
   );
 }

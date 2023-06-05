@@ -1,6 +1,6 @@
 import Months from '../../../types/months.d';
 
-export const getMonth = (date: Date): Months => {
+export const getMonth = (index: number): Months => {
   const months = [
     Months.JAN,
     Months.FEB,
@@ -15,5 +15,5 @@ export const getMonth = (date: Date): Months => {
     Months.NOV,
     Months.DEC,
   ];
-  return months[date.getMonth()];
+  return months[index];
 };

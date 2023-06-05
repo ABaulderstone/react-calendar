@@ -10,13 +10,16 @@ import {
 interface CalendarProps {
   days: number[][];
   month: string;
+  year: number;
 }
-function Calendar({ days, month }: CalendarProps) {
+function Calendar({ days, month, year }: CalendarProps) {
   return (
     <Container>
       <MonthSelector>
         <MonthArrow>⟵</MonthArrow>
-        <MonthHeading>{month}</MonthHeading>
+        <MonthHeading>
+          {month} - {year}
+        </MonthHeading>
         <MonthArrow>⟶</MonthArrow>
       </MonthSelector>
       <Table tw='w-full table-fixed'>
