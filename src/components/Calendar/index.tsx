@@ -2,8 +2,10 @@ import Table from '../Table';
 import {
   CalendarCell,
   CalendarHeader,
-  CalendarMonth,
   Container,
+  MonthArrow,
+  MonthHeading,
+  MonthSelector,
 } from './styled';
 interface CalendarProps {
   days: number[][];
@@ -12,7 +14,11 @@ interface CalendarProps {
 function Calendar({ days, month }: CalendarProps) {
   return (
     <Container>
-      <CalendarMonth>{month}</CalendarMonth>
+      <MonthSelector>
+        <MonthArrow>⟵</MonthArrow>
+        <MonthHeading>{month}</MonthHeading>
+        <MonthArrow>⟶</MonthArrow>
+      </MonthSelector>
       <Table tw='w-full table-fixed'>
         <Table.Head>
           <Table.Row>
