@@ -14,7 +14,7 @@ export const CalendarCell = ({ currentMonth, date }: any) => {
   return (
     <td
       css={[
-        tw`border border-gray-700 p-3 w-[calc(100%/7)]`,
+        tw`border border-gray-700 p-3 w-[calc(100%/7)] sm:h-16 md:h-24 lg:h-32 text-left align-top`,
         !currentMonth && tw`bg-slate-200`,
       ]}
     >
