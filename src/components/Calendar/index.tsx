@@ -6,7 +6,7 @@ interface CalendarProps {
 function Calendar({ days }: CalendarProps) {
   return (
     <Container>
-      <Table>
+      <Table tw='grid grid-cols-7 grid-flow-row'>
         <Table.Head>
           <Table.Row>
             <Table.Header>Sunday</Table.Header>
