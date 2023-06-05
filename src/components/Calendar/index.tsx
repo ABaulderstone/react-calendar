@@ -1,21 +1,21 @@
 import Table from '../Table';
-import { Container } from './styled';
+import { CalendarHeader, Container } from './styled';
 interface CalendarProps {
   days: number[][];
 }
 function Calendar({ days }: CalendarProps) {
   return (
     <Container>
-      <Table tw='grid grid-cols-7 grid-flow-row'>
+      <Table tw='w-full table-fixed'>
         <Table.Head>
           <Table.Row>
-            <Table.Header>Sunday</Table.Header>
-            <Table.Header>Monday</Table.Header>
-            <Table.Header>Tuesday</Table.Header>
-            <Table.Header>Wednesday</Table.Header>
-            <Table.Header>Thursday</Table.Header>
-            <Table.Header>Friday</Table.Header>
-            <Table.Header>Saturday</Table.Header>
+            <CalendarHeader>Su</CalendarHeader>
+            <CalendarHeader>M</CalendarHeader>
+            <CalendarHeader>Tu</CalendarHeader>
+            <CalendarHeader>W</CalendarHeader>
+            <CalendarHeader>Th</CalendarHeader>
+            <CalendarHeader>Fr</CalendarHeader>
+            <CalendarHeader>Sa</CalendarHeader>
           </Table.Row>
         </Table.Head>
         <Table.Body>
