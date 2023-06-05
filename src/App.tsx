@@ -1,6 +1,17 @@
+import { useEffect, useState } from 'react';
 import Calendar from './components/Calendar';
+import Months from '../types/months.d';
+import { getMonth } from './utils/date/current-month';
 
 function App() {
+  const currentDay = new Date();
+  const currentMonth = getMonth(currentDay);
+  const [selectedMonth, setSelectedMonth] = useState<Months>(currentMonth);
+
+  useEffect(() => {
+    console.log(currentMonth);
+    console.log(currentDay);
+  }, [selectedMonth]);
   const days = [
     [1, 2, 3, 4, 5, 6, 7],
     [8, 9, 10, 11, 12, 13, 14],
@@ -10,7 +21,7 @@ function App() {
   ];
   return (
     <>
-      <Calendar days={days} month='June' />
+      <Calendar days={days} month={selectedMonth} />
     </>
   );
 }
