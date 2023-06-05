@@ -11,4 +11,6 @@ export const CalendarTable = ({ children, ...props }: any) => {
 };
 
 export const CalendarHeader = tw(Table.Header)`w-[calc(100%/7)]`;
-export const CalendarCell = tw(Table.Data)`w-[calc(100%/7)]`;
+export const CalendarCell = tw(
+  Table.Data
+)`w-[calc(100%/7)] sm:h-16 md:h-24 lg:h-32 text-left align-top`;

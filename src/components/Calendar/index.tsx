@@ -1,5 +1,5 @@
 import Table from '../Table';
-import { CalendarHeader, Container } from './styled';
+import { CalendarCell, CalendarHeader, Container } from './styled';
 interface CalendarProps {
   days: number[][];
 }
@@ -22,7 +22,7 @@ function Calendar({ days }: CalendarProps) {
           {days.map((row: number[], rIndex: number) => (
             <Table.Row key={rIndex}>
               {row.map((day: number, dIndex: number) => (
-                <Table.Data key={dIndex}>{day}</Table.Data>
+                <CalendarCell key={dIndex}>{day}</CalendarCell>
               ))}
             </Table.Row>
           ))}
