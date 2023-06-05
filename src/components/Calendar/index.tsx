@@ -1,7 +1,9 @@
 import Table from '../Table';
 import { Container } from './styled';
-
-function Calendar() {
+interface CalendarProps {
+  days: number[][];
+}
+function Calendar({ days }: CalendarProps) {
   return (
     <Container>
       <Table>
@@ -16,6 +18,15 @@ function Calendar() {
             <Table.Header>Saturday</Table.Header>
           </Table.Row>
         </Table.Head>
+        <Table.Body>
+          {days.map((row: number[], rIndex: number) => (
+            <Table.Row key={rIndex}>
+              {row.map((day: number, dIndex: number) => (
+                <Table.Data key={dIndex}>{day}</Table.Data>
+              ))}
+            </Table.Row>
+          ))}
+        </Table.Body>
       </Table>
     </Container>
   );
