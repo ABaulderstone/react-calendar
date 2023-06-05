@@ -11,16 +11,24 @@ interface CalendarProps {
   days: number[][];
   month: string;
   year: number;
+  incrementMonth: () => unknown;
+  decrementMonth: () => unknown;
 }
-function Calendar({ days, month, year }: CalendarProps) {
+function Calendar({
+  days,
+  month,
+  year,
+  incrementMonth,
+  decrementMonth,
+}: CalendarProps) {
   return (
     <Container>
       <MonthSelector>
-        <MonthArrow>⟵</MonthArrow>
+        <MonthArrow onClick={() => decrementMonth()}>⟵</MonthArrow>
         <MonthHeading>
           {month} - {year}
         </MonthHeading>
-        <MonthArrow>⟶</MonthArrow>
+        <MonthArrow onClick={() => incrementMonth()}>⟶</MonthArrow>
       </MonthSelector>
       <Table tw='w-full table-fixed'>
         <Table.Head>

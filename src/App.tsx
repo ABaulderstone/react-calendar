@@ -13,6 +13,24 @@ function App() {
     currentDate.getFullYear()
   );
 
+  const incrementMonth = () => {
+    if (selectedMonthNumber === 11) {
+      setSelectedYear((current) => current + 1);
+      setSelectedMonthNumber(0);
+      return;
+    }
+    setSelectedMonthNumber((current) => current + 1);
+  };
+
+  const decrementMonth = () => {
+    if (selectedMonthNumber === 0) {
+      setSelectedYear((current) => current - 1);
+      setSelectedMonthNumber(11);
+      return;
+    }
+    setSelectedMonthNumber((current) => current - 1);
+  };
+
   useEffect(() => {
     const month = getMonth(selectedMonthNumber);
     setSelectedMonth(month);
@@ -27,7 +45,13 @@ function App() {
   ];
   return (
     <>
-      <Calendar days={days} month={selectedMonth} year={selectedYear} />
+      <Calendar
+        days={days}
+        month={selectedMonth}
+        year={selectedYear}
+        incrementMonth={incrementMonth}
+        decrementMonth={decrementMonth}
+      />
     </>
   );
 }
