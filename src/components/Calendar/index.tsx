@@ -1,11 +1,18 @@
 import Table from '../Table';
-import { CalendarCell, CalendarHeader, Container } from './styled';
+import {
+  CalendarCell,
+  CalendarHeader,
+  CalendarMonth,
+  Container,
+} from './styled';
 interface CalendarProps {
   days: number[][];
+  month: string;
 }
-function Calendar({ days }: CalendarProps) {
+function Calendar({ days, month }: CalendarProps) {
   return (
     <Container>
+      <CalendarMonth>{month}</CalendarMonth>
       <Table tw='w-full table-fixed'>
         <Table.Head>
           <Table.Row>

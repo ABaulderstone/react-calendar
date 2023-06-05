@@ -10,7 +10,7 @@ function App() {
   ];
   return (
     <>
-      <Calendar days={days} />
+      <Calendar days={days} month='June' />
     </>
   );
 }
