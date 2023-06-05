@@ -3,6 +3,8 @@ import Calendar from './components/Calendar';
 import Months from '../types/months.d';
 import { getMonth } from './utils/date/current-month';
 
+import { getCalendarReadyDates } from './utils/date/get-calendar-ready-dates';
+
 function App() {
   const currentDate = new Date();
   const [selectedMonth, setSelectedMonth] = useState<Months>(Months.BLANK);
@@ -12,6 +14,7 @@ function App() {
   const [selectedYear, setSelectedYear] = useState<number>(
     currentDate.getFullYear()
   );
+  const [dates, setDates] = useState<Date[][]>([]);
 
   const incrementMonth = () => {
     if (selectedMonthNumber === 11) {
@@ -33,21 +36,18 @@ function App() {
 
   useEffect(() => {
     const month = getMonth(selectedMonthNumber);
+    const datesArr = getCalendarReadyDates(selectedMonthNumber, selectedYear);
+    console.log(datesArr);
     setSelectedMonth(month);
+    setDates(datesArr);
   }, [selectedMonthNumber]);
 
-  const days = [
-    [1, 2, 3, 4, 5, 6, 7],
-    [8, 9, 10, 11, 12, 13, 14],
-    [15, 16, 17, 18, 19, 20, 21],
-    [22, 23, 24, 25, 26, 27, 28],
-    [29, 30, 31, 32, 33, 34, 35],
-  ];
   return (
     <>
       <Calendar
-        days={days}
+        dates={dates}
         month={selectedMonth}
+        monthNumber={selectedMonthNumber}
         year={selectedYear}
         incrementMonth={incrementMonth}
         decrementMonth={decrementMonth}

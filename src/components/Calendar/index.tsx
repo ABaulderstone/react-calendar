@@ -8,14 +8,16 @@ import {
   MonthSelector,
 } from './styled';
 interface CalendarProps {
-  days: number[][];
+  dates: Date[][];
+  monthNumber: number;
   month: string;
   year: number;
   incrementMonth: () => unknown;
   decrementMonth: () => unknown;
 }
 function Calendar({
-  days,
+  dates,
+  monthNumber,
   month,
   year,
   incrementMonth,
@@ -43,10 +45,14 @@ function Calendar({
           </Table.Row>
         </Table.Head>
         <Table.Body>
-          {days.map((row: number[], rIndex: number) => (
+          {dates.map((row: Date[], rIndex: number) => (
             <Table.Row key={rIndex}>
-              {row.map((day: number, dIndex: number) => (
-                <CalendarCell key={dIndex}>{day}</CalendarCell>
+              {row.map((date: Date, dIndex: number) => (
+                <CalendarCell
+                  key={dIndex}
+                  date={date}
+                  currentMonth={date.getMonth() === monthNumber}
+                />
               ))}
             </Table.Row>
           ))}
