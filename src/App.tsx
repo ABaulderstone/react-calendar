@@ -45,6 +45,7 @@ function App() {
   return (
     <>
       <Calendar
+        currentDate={currentDate}
         dates={dates}
         month={selectedMonth}
         monthNumber={selectedMonthNumber}

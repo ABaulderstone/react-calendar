@@ -1,13 +1,15 @@
 import Table from '../Table';
 import {
-  CalendarCell,
   CalendarHeader,
   Container,
   MonthArrow,
   MonthHeading,
   MonthSelector,
 } from './styled';
+
+import { CalendarCell } from './CalendarCell';
 interface CalendarProps {
+  currentDate: Date;
   dates: Date[][];
   monthNumber: number;
   month: string;
@@ -16,6 +18,7 @@ interface CalendarProps {
   decrementMonth: () => unknown;
 }
 function Calendar({
+  currentDate,
   dates,
   monthNumber,
   month,
@@ -51,7 +54,8 @@ function Calendar({
                 <CalendarCell
                   key={dIndex}
                   date={date}
-                  currentMonth={date.getMonth() === monthNumber}
+                  isCurrentMonth={date.getMonth() === monthNumber}
+                  currentDate={currentDate}
                 />
               ))}
             </Table.Row>
