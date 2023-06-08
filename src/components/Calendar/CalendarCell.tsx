@@ -2,19 +2,22 @@ import tw from 'twin.macro';
 import { isSameDate } from '../../utils/date/same-date';
 
 export interface CalendarCellProps {
+  key: number;
   isCurrentMonth: boolean;
   date: Date;
   currentDate: Date;
-  key: number;
+  onClick: () => unknown;
 }
 export const CalendarCell = ({
   isCurrentMonth,
   date,
   currentDate,
+  onClick,
 }: CalendarCellProps) => {
   const today = isSameDate(date, currentDate);
   return (
     <td
+      onClick={onClick}
       css={[
         tw`border border-gray-700  w-[calc(100%/7)] h-24 md:h-32 lg:h-48 text-left align-top`,
         !isCurrentMonth && tw`bg-slate-200`,

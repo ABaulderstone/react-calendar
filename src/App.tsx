@@ -4,6 +4,7 @@ import Months from '../types/months.d';
 import { getMonth } from './utils/date/current-month';
 
 import { getCalendarReadyDates } from './utils/date/get-calendar-ready-dates';
+import Modal from './components/Modal';
 
 function App() {
   const currentDate = new Date();
@@ -15,7 +16,15 @@ function App() {
     currentDate.getFullYear()
   );
   const [dates, setDates] = useState<Date[][]>([]);
+  const [createEventModalShown, setCreateEventModalShown] =
+    useState<boolean>(false);
 
+  const onCreateEventModalClose = () => {
+    setCreateEventModalShown(false);
+  };
+  const onCreateEventModalOpen = () => {
+    setCreateEventModalShown(true);
+  };
   const incrementMonth = () => {
     if (selectedMonthNumber === 11) {
       setSelectedYear((current) => current + 1);
@@ -52,7 +61,17 @@ function App() {
         year={selectedYear}
         incrementMonth={incrementMonth}
         decrementMonth={decrementMonth}
+        onCellClick={onCreateEventModalOpen}
       />
+      {createEventModalShown && (
+        <Modal
+          title='Create Event'
+          onClose={onCreateEventModalClose}
+          shown={createEventModalShown}
+        >
+          Meep
+        </Modal>
+      )}
     </>
   );
 }

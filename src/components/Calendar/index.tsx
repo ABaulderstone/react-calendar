@@ -16,6 +16,7 @@ interface CalendarProps {
   year: number;
   incrementMonth: () => unknown;
   decrementMonth: () => unknown;
+  onCellClick: () => unknown;
 }
 function Calendar({
   currentDate,
@@ -25,6 +26,7 @@ function Calendar({
   year,
   incrementMonth,
   decrementMonth,
+  onCellClick,
 }: CalendarProps) {
   return (
     <Container>
@@ -56,6 +58,7 @@ function Calendar({
                   date={date}
                   isCurrentMonth={date.getMonth() === monthNumber}
                   currentDate={currentDate}
+                  onClick={onCellClick}
                 />
               ))}
             </Table.Row>
