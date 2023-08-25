@@ -1,4 +1,7 @@
 import Table from '../Table';
+import Months from '../../../types/months.d';
+import { getCalendarReadyDates } from '../../utils/date/get-calendar-ready-dates';
+import { useEffect, useState } from 'react';
 import {
   CalendarHeader,
   Container,
@@ -8,32 +11,52 @@ import {
 } from './styled';
 
 import { MonthlyCalendarCell } from './MonthlyCalendarCell';
-interface MonthlyCalendarProps {
-  currentDate: Date;
-  dates: Date[][];
-  monthNumber: number;
-  month: string;
-  year: number;
-  incrementMonth: () => unknown;
-  decrementMonth: () => unknown;
-  onCellClick: () => unknown;
-}
-function MonthlyCalendar({
-  currentDate,
-  dates,
-  monthNumber,
-  month,
-  year,
-  incrementMonth,
-  decrementMonth,
-  onCellClick,
-}: MonthlyCalendarProps) {
+import { getMonth } from '../../utils/date/current-month';
+import { CalendarProps } from '../../containers/Calendar';
+
+function MonthlyCalendar({ currentDate, onCellClick }: CalendarProps) {
+  const [selectedMonth, setSelectedMonth] = useState<Months>(Months.BLANK);
+  const [selectedMonthNumber, setSelectedMonthNumber] = useState<number>(
+    currentDate.getMonth()
+  );
+  const [selectedYear, setSelectedYear] = useState<number>(
+    currentDate.getFullYear()
+  );
+  const [dates, setDates] = useState<Date[][]>([]);
+
+  const monthNumber = currentDate.getMonth();
+
+  const incrementMonth = () => {
+    if (selectedMonthNumber === 11) {
+      setSelectedYear((current) => current + 1);
+      setSelectedMonthNumber(0);
+      return;
+    }
+    setSelectedMonthNumber((current) => current + 1);
+  };
+
+  const decrementMonth = () => {
+    if (selectedMonthNumber === 0) {
+      setSelectedYear((current) => current - 1);
+      setSelectedMonthNumber(11);
+      return;
+    }
+    setSelectedMonthNumber((current) => current - 1);
+  };
+
+  useEffect(() => {
+    const month = getMonth(selectedMonthNumber);
+    const datesArr = getCalendarReadyDates(selectedMonthNumber, selectedYear);
+    setSelectedMonth(month);
+    setDates(datesArr);
+  }, [selectedMonthNumber]);
+
   return (
     <Container>
       <MonthSelector>
         <MonthArrow onClick={() => decrementMonth()}>⟵</MonthArrow>
         <MonthHeading>
-          {month} - {year}
+          {selectedMonth} - {selectedYear}
         </MonthHeading>
         <MonthArrow onClick={() => incrementMonth()}>⟶</MonthArrow>
       </MonthSelector>
