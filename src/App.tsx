@@ -4,6 +4,7 @@ import Calendar from './containers/Calendar';
 import Modal from './components/Modal';
 import { MinScreenProvider } from './context/MinScreenProvider';
 import { theme } from 'twin.macro';
+import { MainContainer } from './components/global-styled';
 
 function App() {
   const currentDate = new Date();
@@ -20,10 +21,12 @@ function App() {
 
   return (
     <MinScreenProvider screens={theme`screens`}>
-      <Calendar
-        currentDate={currentDate}
-        onCellClick={onCreateEventModalOpen}
-      />
+      <MainContainer>
+        <Calendar
+          currentDate={currentDate}
+          onCellClick={onCreateEventModalOpen}
+        />
+      </MainContainer>
 
       {createEventModalShown && (
         <Modal

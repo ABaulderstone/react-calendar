@@ -52,7 +52,7 @@ function MonthlyCalendar({ currentDate, onCellClick }: CalendarProps) {
   }, [selectedMonthNumber]);
 
   return (
-    <Container>
+    <>
       <MonthSelector>
         <MonthArrow onClick={() => decrementMonth()}>⟵</MonthArrow>
         <MonthHeading>
@@ -88,7 +88,7 @@ function MonthlyCalendar({ currentDate, onCellClick }: CalendarProps) {
           ))}
         </Table.Body>
       </Table>
-    </Container>
+    </>
   );
 }
 

@@ -9,12 +9,13 @@ export interface CalendarProps {
 
 const Calendar = ({ currentDate, onCellClick }: CalendarProps) => {
   const { min } = useMinScreen();
+  console.log(min);
   return (
     <>
       {min`md` && (
         <MonthlyCalendar currentDate={currentDate} onCellClick={onCellClick} />
       )}
-      {min`sm` && !min`md` && <WeeklyCalendar />}
+      {!min`md` && <WeeklyCalendar />}
     </>
   );
 };
