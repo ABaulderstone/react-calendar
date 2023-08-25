@@ -7,8 +7,8 @@ import {
   MonthSelector,
 } from './styled';
 
-import { CalendarCell } from './CalendarCell';
-interface CalendarProps {
+import { MonthlyCalendarCell } from './MonthlyCalendarCell';
+interface MonthlyCalendarProps {
   currentDate: Date;
   dates: Date[][];
   monthNumber: number;
@@ -18,7 +18,7 @@ interface CalendarProps {
   decrementMonth: () => unknown;
   onCellClick: () => unknown;
 }
-function Calendar({
+function MonthlyCalendar({
   currentDate,
   dates,
   monthNumber,
@@ -27,7 +27,7 @@ function Calendar({
   incrementMonth,
   decrementMonth,
   onCellClick,
-}: CalendarProps) {
+}: MonthlyCalendarProps) {
   return (
     <Container>
       <MonthSelector>
@@ -53,7 +53,7 @@ function Calendar({
           {dates.map((row: Date[], rIndex: number) => (
             <Table.Row key={rIndex}>
               {row.map((date: Date, dIndex: number) => (
-                <CalendarCell
+                <MonthlyCalendarCell
                   key={dIndex}
                   date={date}
                   isCurrentMonth={date.getMonth() === monthNumber}
@@ -69,4 +69,4 @@ function Calendar({
   );
 }
 
-export default Calendar;
+export default MonthlyCalendar;

@@ -1,19 +1,19 @@
 import tw from 'twin.macro';
 import { isSameDate } from '../../utils/date/same-date';
 
-export interface CalendarCellProps {
+export interface MonthlyCalendarCellProps {
   key: number;
   isCurrentMonth: boolean;
   date: Date;
   currentDate: Date;
   onClick: () => unknown;
 }
-export const CalendarCell = ({
+export const MonthlyCalendarCell = ({
   isCurrentMonth,
   date,
   currentDate,
   onClick,
-}: CalendarCellProps) => {
+}: MonthlyCalendarCellProps) => {
   const today = isSameDate(date, currentDate);
   return (
     <td
