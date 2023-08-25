@@ -1,55 +1,25 @@
 import Table from '../Table';
-import Months from '../../../types/months.d';
-import { getCalendarReadyDates } from '../../utils/date/get-calendar-ready-dates';
-import { useEffect, useState } from 'react';
+
 import {
   CalendarHeader,
-  Container,
   MonthArrow,
   MonthHeading,
   MonthSelector,
 } from './styled';
 
 import { MonthlyCalendarCell } from './MonthlyCalendarCell';
-import { getMonth } from '../../utils/date/current-month';
 import { CalendarProps } from '../../containers/Calendar';
+import useDate from '../../hooks/useDate';
 
 function MonthlyCalendar({ currentDate, onCellClick }: CalendarProps) {
-  const [selectedMonth, setSelectedMonth] = useState<Months>(Months.BLANK);
-  const [selectedMonthNumber, setSelectedMonthNumber] = useState<number>(
-    currentDate.getMonth()
-  );
-  const [selectedYear, setSelectedYear] = useState<number>(
-    currentDate.getFullYear()
-  );
-  const [dates, setDates] = useState<Date[][]>([]);
-
-  const monthNumber = currentDate.getMonth();
-
-  const incrementMonth = () => {
-    if (selectedMonthNumber === 11) {
-      setSelectedYear((current) => current + 1);
-      setSelectedMonthNumber(0);
-      return;
-    }
-    setSelectedMonthNumber((current) => current + 1);
-  };
-
-  const decrementMonth = () => {
-    if (selectedMonthNumber === 0) {
-      setSelectedYear((current) => current - 1);
-      setSelectedMonthNumber(11);
-      return;
-    }
-    setSelectedMonthNumber((current) => current - 1);
-  };
-
-  useEffect(() => {
-    const month = getMonth(selectedMonthNumber);
-    const datesArr = getCalendarReadyDates(selectedMonthNumber, selectedYear);
-    setSelectedMonth(month);
-    setDates(datesArr);
-  }, [selectedMonthNumber]);
+  const {
+    dates,
+    selectedMonth,
+    selectedMonthNumber,
+    incrementMonth,
+    decrementMonth,
+    selectedYear,
+  } = useDate(currentDate);
 
   return (
     <>

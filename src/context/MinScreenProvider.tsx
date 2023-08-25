@@ -37,7 +37,7 @@ const MinScreenProvider = ({ children, screens }: MinScreenProviderProps) => {
         }),
         {}
       );
-      console.log(mediaQueryLists);
+
       setQueryMatch(updatedMatches);
     };
 

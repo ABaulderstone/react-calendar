@@ -1,5 +1,5 @@
 import MonthlyCalendar from '../../components/MonthlyCalendar';
-import WeeklyCalendar from '../../components/WeeklyCalendar';
+import DailyCalendar from '../../components/DailyCalendar';
 import { useMinScreen } from '../../context/MinScreenProvider';
 
 export interface CalendarProps {
@@ -15,7 +15,9 @@ const Calendar = ({ currentDate, onCellClick }: CalendarProps) => {
       {min`md` && (
         <MonthlyCalendar currentDate={currentDate} onCellClick={onCellClick} />
       )}
-      {!min`md` && <WeeklyCalendar />}
+      {!min`md` && (
+        <DailyCalendar currentDate={currentDate} onCellClick={onCellClick} />
+      )}
     </>
   );
 };
