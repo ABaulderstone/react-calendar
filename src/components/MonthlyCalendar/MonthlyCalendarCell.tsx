@@ -3,24 +3,25 @@ import { isSameDate } from '../../utils/date/same-date';
 
 export interface MonthlyCalendarCellProps {
   key: number;
-  isCurrentMonth: boolean;
+  selectedMonthNumber: number;
   date: Date;
   currentDate: Date;
   onClick: () => unknown;
 }
 export const MonthlyCalendarCell = ({
-  isCurrentMonth,
+  selectedMonthNumber,
   date,
   currentDate,
   onClick,
 }: MonthlyCalendarCellProps) => {
   const today = isSameDate(date, currentDate);
+  const isSelectedMonth = selectedMonthNumber === date.getMonth();
   return (
     <td
       onClick={onClick}
       css={[
         tw`border border-gray-700  w-[calc(100%/7)] h-24 md:h-32 lg:h-48 text-left align-top`,
-        !isCurrentMonth && tw`bg-slate-200`,
+        !isSelectedMonth && tw`bg-slate-200`,
       ]}
     >
       <div

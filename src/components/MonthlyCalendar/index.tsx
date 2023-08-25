@@ -79,7 +79,7 @@ function MonthlyCalendar({ currentDate, onCellClick }: CalendarProps) {
                 <MonthlyCalendarCell
                   key={dIndex}
                   date={date}
-                  isCurrentMonth={date.getMonth() === monthNumber}
+                  selectedMonthNumber={selectedMonthNumber}
                   currentDate={currentDate}
                   onClick={onCellClick}
                 />
