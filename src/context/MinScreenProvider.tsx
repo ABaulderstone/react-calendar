@@ -1,15 +1,18 @@
 import { useState, useEffect, createContext, useContext } from 'react';
+import { Matches, MediaDataItem, Screens, Size } from '../../types/min-screen';
 
 /**
  * Screen provider and hook for Twin
  */
+
+// Code mostly from https://gist.github.com/ben-rogerson/b4b406dffcc18ae02f8a6c8c97bb58a8
 const defaultValue = {};
 
 const ScreensContext = createContext(defaultValue);
 
 interface MinScreenProviderProps {
   children: React.ReactNode;
-  screens: string;
+  screens: Screens;
 }
 
 const MinScreenProvider = ({ children, screens }: MinScreenProviderProps) => {
@@ -17,12 +20,12 @@ const MinScreenProvider = ({ children, screens }: MinScreenProviderProps) => {
 
   useEffect(() => {
     const mediaQueryLists: any = {};
+
     let isAttached = false;
 
-    const mediaData = Object.entries(screens).map(([name, media]) => [
-      name,
-      `(min-width: ${media})`,
-    ]);
+    const mediaData: MediaDataItem[] = Object.entries(screens).map(
+      ([name, media]) => [name as Size, `(min-width: ${media})`]
+    );
 
     const handleQueryListener = () => {
       const updatedMatches = mediaData.reduce(
@@ -34,11 +37,12 @@ const MinScreenProvider = ({ children, screens }: MinScreenProviderProps) => {
         }),
         {}
       );
+      console.log(mediaQueryLists);
       setQueryMatch(updatedMatches);
     };
 
     if (window && window.matchMedia) {
-      const matches: any = {};
+      const matches: Matches = {};
 
       mediaData.forEach(([name, media]) => {
         if (typeof media !== 'string') {

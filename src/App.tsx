@@ -19,6 +19,8 @@ function App() {
     setCreateEventModalShown(true);
   };
 
+  console.log(theme`screens`);
+
   return (
     <MinScreenProvider screens={theme`screens`}>
       <MainContainer>
