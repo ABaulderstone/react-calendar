@@ -11,7 +11,7 @@ import { MonthlyCalendarCell } from './MonthlyCalendarCell';
 import { CalendarProps } from '../../containers/Calendar';
 import useDate from '../../hooks/useDate';
 
-function MonthlyCalendar({ currentDate, onCellClick }: CalendarProps) {
+function LargeCalendar({ currentDate, onCellClick }: CalendarProps) {
   const {
     dates,
     selectedMonth,
@@ -62,4 +62,4 @@ function MonthlyCalendar({ currentDate, onCellClick }: CalendarProps) {
   );
 }
 
-export default MonthlyCalendar;
+export default LargeCalendar;

@@ -1,45 +1,34 @@
-import React from 'react';
-import tw from 'twin.macro';
-{
-  /* <Table.Body>
-{dates.map((row: Date[], rIndex: number) => (
-  <Table.Row key={rIndex}>
-    {row.map((date: Date, dIndex: number) => (
-      <MonthlyCalendarCell
-        key={dIndex}
-        date={date}
-        selectedMonthNumber={selectedMonthNumber}
-        currentDate={currentDate}
-        onClick={onCellClick}
-      />
-    ))}
-  </Table.Row>
-))}
-</Table.Body> */
-}
-
+import Cell from './Cell';
 interface SmallCalendarProps {
   dates: Date[][];
+  selectedMonthNumber: number;
 }
-const Cell = tw.td`text-center`;
-const SmallCalendar = ({ dates }: SmallCalendarProps) => {
+
+const SmallCalendar = ({ dates, selectedMonthNumber }: SmallCalendarProps) => {
   return (
     <>
-      <table>
+      <table tw='border border-gray-700 border-collapse'>
         <thead>
-          <th>S</th>
-          <th>M</th>
-          <th>T</th>
-          <th>W</th>
-          <th>T</th>
-          <th>F</th>
-          <th>S</th>
+          <tr>
+            <th>S</th>
+            <th>M</th>
+            <th>T</th>
+            <th>W</th>
+            <th>T</th>
+            <th>F</th>
+            <th>S</th>
+          </tr>
         </thead>
         <tbody>
           {dates.map((row: Date[], rIndex: number) => (
             <tr key={`row-${rIndex}`}>
               {row.map((date: Date, index: number) => (
-                <Cell key={index}>{date.getDate()}</Cell>
+                <Cell
+                  key={index}
+                  date={date}
+                  selectedMonthNumber={selectedMonthNumber}
+                  onClick={() => console.log('You clicked a cell')}
+                />
               ))}
             </tr>
           ))}

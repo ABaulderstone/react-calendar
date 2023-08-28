@@ -1,14 +1,22 @@
 import { CalendarProps } from '../../containers/Calendar';
 import useDate from '../../hooks/useDate';
 import SmallCalendar from '../SmallCalendar';
-import { DailyCalendarContainer, SmallCalenderContainer } from './styled';
+import {
+  DailyCalendarContainer,
+  DailyCalendarHeading,
+  SmallCalenderContainer,
+} from './styled';
 
-const DailyCalendar = ({ currentDate, onCellClick }: CalendarProps) => {
-  const { dates } = useDate(currentDate);
+const DailyCalendar = ({ currentDate }: CalendarProps) => {
+  const { dates, selectedMonth, selectedMonthNumber } = useDate(currentDate);
   return (
     <DailyCalendarContainer>
+      <DailyCalendarHeading>{selectedMonth}</DailyCalendarHeading>
       <SmallCalenderContainer>
-        <SmallCalendar dates={dates} />
+        <SmallCalendar
+          dates={dates}
+          selectedMonthNumber={selectedMonthNumber}
+        />
       </SmallCalenderContainer>
     </DailyCalendarContainer>
   );

@@ -17,7 +17,6 @@ export const Modal = ({
   onClose,
   title = 'Title Here',
 }: ModalProps) => {
-  console.log('Mondal render');
   const boxRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
